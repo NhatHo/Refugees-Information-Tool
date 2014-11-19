@@ -1,0 +1,8 @@
+applications:
+- services:
+  - Refugees_solution
+  disk: 1024M
+  name: Refugees_Solution
+  path: .
+  mem: 128M
+  instances: 1

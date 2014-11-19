@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html ng-app="mainpageApp">
+<head>
+	<link rel="stylesheet" type="text/css" href="css/mainpage.css">
+	<title id="tabTitle"> You are Helping Refugees </title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+	<!-- MAP STUFF -->
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<!-- MAP STUFF -->
+
+	<!-- Angular CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+
+	<!-- Firebase CDN -->
+	<script src="https://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
+
+	<!-- AngularFire CDN -->
+	<script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="js/app.js"></script>
+	<script src="js/countriesDropdown.js"></script>
+</head>
+
+<body ng-controller="mainpageController">
+
+	<header class="container" >
+		<h1 id="title">You are Helping Refugees</h1>
+	</header>
+
+	<!-- NAVBAR -->
+	<nav class="navbarx navbar-default navbar-fixed-top" role="navigation">
+		<div>
+        	<a href="#"><img src="images/mapPageLogo1.png" style="padding-left: 7.5%;"/> </a>
+      	</div>
+		<div class="container">
+			<ul class="nav navbar-nav" style="float: right !important;margin-top: -4%;margin-right: 32%;">
+				<li class="nav-buttons">
+					<a href="#" class= "navButtons">TOP</a>
+				</li>
+				<li class="nav-buttons">
+					<a href="#mapAnchor" class= "navButtons">MAP</a>
+				</li>
+				<li class="nav-buttons">
+					<a href="#whoAnchor" class= "navButtons">WHO</a>
+				</li>
+				<li class="nav-buttons">
+					<a href="#why" class= "navButtons">WHY</a>
+				</li>
+				<li class="nav-buttons">
+					<a href="#how" class= "navButtons">HOW</a>
+				</li>
+			</ul>
+			<form class="navbar-form navbar-left"  style="margin-top: -3.5%;margin-left: 69%; "role="search" >
+				<div style="display:none" id="searchCountry">	
+            		<div class="form-group">
+              			<input type="text" class="form-control" placeholder="Search Country" id="address" style="font-family: 'Open Sans Condensed', sans-serif;">
+            		</div>
+            		<button type="submit" class="btn btn-default" onclick="codeAddress();" style="font-family: 'Open Sans Condensed', sans-serif;">Search country</button>
+           		</div>
+            </form>
+		</div>
+	</nav>
+	<div class="headContainer" id="greeting" style="margin-top:0%;">
+		<div class="whiteBar">
+			<div class="col-sm-6"></div>
+			<img class="col-sm-5" src='images/navPage3.png' >
+		</div>
+
+		<div class="refugeeDefContainer col-sm-7">
+			<img src='images/navPage2.png'>
+		</div>
+
+
+		<div class="textContainer">
+			<img src='images/navPage4.png'>
+		</div>
+		<div class="col-sm-12 inputs">
+			<form role="form" style="margin-left: 3%; margin-top: 4%;" ng-submit="enterSite();">
+				<div class="sub-inputs col-sm-12" style="margin-left: 12.5%;">
+
+					<div class="form-group col-sm-3 countryInput">
+						<div class="country col-sm-1">
+							<label class="textStyle" for="country">Country</label>
+						</div>
+						<div class="col-sm-2">
+							<div id="countries" style="font-family: 'Open Sans Condensed', sans-serif;"></div>
+							<script type="text/javascript">countriesDropdown("countries");</script>
+						</div>
+					</div>
+					<div class="form-group col-sm-3 nameInput">
+						<div class="col-sm-1 name">
+							<label class="textStyle" for="name">Name </label>
+						</div>
+						<div class="col-sm-2 ">
+							<input type="text" class="form-control box" id="name" placeholder="Your Name" ng-model="username">
+						</div>
+					</div>
+
+				
+
+					<!--<div class="form-group col-sm-3 ageInput">
+						<div class="col-sm-1 age">
+							<label class="textStyle" for="age">Age </label>
+						</div>
+						<div class="col-sm-2">
+							<input ng-model="userage" type="text" class="form-control box" id="age" placeholder="Your Age (Optional)">
+						</div>
+					</div>-->
+
+					<a type="button" class="btn btn-primary" style="font-family: 'Open Sans Condensed', sans-serif;" href="#mapAnchor" onclick="storeCountry();">Enter</a>
+				</div>
+			</form>
+	 	</div>
+	</div>
+	<div class="column map" id="mapBox" style="margin-top:0%;" >
+		<a id="mapAnchor"></a>
+		<div id="map-canvas"></div>
+	</div>
+
+	<!-- <div class="organ-parent main container"> -->
+	<div class="who" id="who"><h3>WHO</h3>
+		<a id="whoAnchor"></a>
+		<div class='info'>
+			<h4>Demography: {{selectedCountry}}</h4>
+			<ul>
+				<li>Female: {{counrtiesLocation[selectedCountry].Who.Total.Female}}</li>
+				<li>Male: {{counrtiesLocation[selectedCountry].Who.Total.Male}}</li>
+				<li>Total refugee population: {{counrtiesLocation[selectedCountry].Who.Total.Population}}</li>
+			</ul>
+			<h4>Origin</h4>
+			<div class="originContent">
+				<ul>
+					<li ng-repeat="origin in counrtiesLocation[selectedCountry].Who.Origin" align="left">{{origin.country}}: {{origin.population}} </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="why" id="why"><h3>WHY</h3>
+		<div class='info'>
+			<ul>
+				<li ng-repeat="why in counrtiesLocation[selectedCountry].Why.Causes">
+					{{why}}
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="how" id="how">
+		<h3>HOW YOU CAN HELP</h3>
+		<div class='info'>
+			<!-- <li>Red Cross 
+				<img src="http://www.redcross.ca/crc/img/1-1-6-redcross-emblem.gif" height="20px" width="27px"> 
+				<p>Red Cross provides refugee claimants with information on 
+					how to find affordable housing, process a refugee claim, secure
+					employment, as well as how to apply for legal aid or social 
+					assistance. Giving the right information at the right time to 
+					refugee claimants greatly improves their chances of integration 
+					and smoothens their transition to a new life in Canada.</p>
+					<a class="btn btn-primary" href="http://www.redcross.ca/" target="_blank">Site</a>
+					<a class="btn btn-primary" href="http://www.redcross.ca/donate" target="_blank">Donate Now</a>
+				</li><br/> -->
+				<li>
+					<img src="http://upload.wikimedia.org/wikipedia/en/4/42/Unhcr_logo.jpg" height="20px" width="22px"> 
+					<p ng-repeat="(key, how) in counrtiesLocation[selectedCountry].Organization">
+						{{key}} <br/>
+						<span ng-repeat="projs in how.Projects">{{projs}}</span>
+					</p>
+						<a class="btn btn-primary" href="http://www.unhcr.ca/" target="_blank">Site</a>
+						<a class="btn btn-primary" href="https://donate.unhcr.ca//" target="_blank">Donate Now</a>
+					</li>
+			<!--<li>ETC.
+				<img src="spacer.gif" height="20px" width="20px"> 
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco </p>
+				<a class="btn btn-primary" href="http://www.example.ca">Site</a>
+			</li>-->
+		</div >
+	</div>
+	<!-- </div> -->
+	<!-- Custom JavaScript -->
+	<script>initialize();</script>
+</body>
+</html>

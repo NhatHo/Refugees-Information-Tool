@@ -1,0 +1,205 @@
+header h1 {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 15px;
+}
+input::-webkit-input-placeholder{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 15px
+}
+input:-moz-placeholder{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 5px
+}
+.textStyle {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 19px
+}
+.navButtons:hover {
+	background: #0b0b0a;
+}
+.originContent{
+	-webkit-column-count:4; /* Chrome, Safari, Opera */
+	-moz-column-count:4; /* Firefox */
+	column-count:4;
+}
+.headContainer {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.nameInput,
+.countryInput,
+.ageInput {
+	margin-right: 45px;
+}
+
+
+.name{ 
+	width: 47px !important;
+	margin-right: 10px;
+}
+.country{ 
+	width: 64px !important;
+	margin-right: 10px;
+}
+.age{
+	width: 20px !important;
+	margin-right: 6px;
+}
+
+.box{width: 178px !important}
+.navButtons{
+	
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
+
+}
+.nav-barx{
+	background-color: #B15959;
+	margin-bottom: 0px !important;
+}
+
+.refugeeDefContainer {
+	margin-left: 13%;
+    margin-top: 2%;
+}
+
+.nav-buttons:hover{
+	background-color: #E3DB84;
+}
+
+
+.whiteBar {
+	position: absolute;
+	top: 113px;
+	width: 100%;
+	margin-left: -9%;
+}
+
+.textContainer {
+	position: absolute;
+	margin-top: 350px;
+	width: 100%;
+	margin-left: 18%;
+	background-color: transparent;
+}
+
+.inputs{
+	margin-top: 7%;
+}
+
+.submit {
+	padding-top: 15px;
+	margin-top: -15px;
+	margin-left: 5px;
+}
+
+#greeting { 
+	background: url(../images/navPage1.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	margin-top: -3%;
+
+}
+
+body,html {
+	height:100%;
+	/*background: url(../images/IndexBackground.jpg) no-repeat center center fixed; */
+	/*background-color: transparent !important;*/
+	background-color: whitesmoke;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+}
+
+.title{
+	margin-top: 22px;
+	margin-bottom: 22px;
+}
+
+.column{
+	height:400px;
+	margin-bottom: 10px;
+}
+
+#panel {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+}
+
+.who, .why, .how{
+	/*border: 1px solid lightgrey;*/
+	/*padding-bottom: 10px;
+	padding-right: 7px !important;*/
+	position: relative;
+	border-radius: 10px;
+	background-color: whitesmoke;
+	background-color: rgba(245,245,245, 0.8);
+	text-align: center;
+}
+
+h3{
+	background-color: #dfaf74;
+	margin: 0px 5px 0px 5px !important;
+	padding: 15px;
+	margin-bottom: 10px;
+	opacity: 0.9;
+}
+
+.info{
+	padding-top: 5px;
+	padding-bottom: 20px;
+}
+
+.desription img{
+	float: left;
+}
+
+.organ-parent{
+	margin-bottom: 20px;
+}
+
+.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px Arial;
+}
+
+#mapBox {
+	position: relative;
+}
+
+#mapAnchor {
+	visibility: hidden;
+	position: absolute;
+	top: -78px;
+}
+
+#whoAnchor {
+	visibility: hidden;
+	position:absolute;
+	top:-78px;
+}
+#map-canvas {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px
+}
+
+.map{
+	height: 100%;
+}

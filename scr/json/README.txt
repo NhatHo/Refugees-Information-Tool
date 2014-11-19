@@ -1,0 +1,1 @@
+The folder contains scripts which populate the database
